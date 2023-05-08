@@ -31,8 +31,11 @@ pca.frequency = 50
 # servo7 = servo.Servo(pca.channels[7], actuation_range=135)
 servo0 = servo.Servo(pca.channels[0], actuation_range=135)
 servo1 = servo.Servo(pca.channels[1], actuation_range=135)
-# Set servo 1 to angle 90°
-servo1.angle = 90
+servo2 = servo.Servo(pca.channels[2], actuation_range=135)
+servo3 = servo.Servo(pca.channels[3], actuation_range=135)
+servo1.angle = 100
+servo2.angle = 90
+servo3.angle = 90
 
 # We sleep in the loops to give the servo time to move into position.
 # for i in range(135):
