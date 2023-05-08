@@ -13,7 +13,7 @@ pca.frequency = 50
 
 # Set up for servo #0
 servo0_range = 180
-servo0 = servo.Servo(pca.channels[0], actuation_range=servo0_range, min_pulse=490, max_pulse=1950)
+servo0 = servo.Servo(pca.channels[0], actuation_range=servo0_range, min_pulse=480, max_pulse=1970)
 
 # Statically hold the rest of the servos
 servo1 = servo.Servo(pca.channels[1], actuation_range=135)
