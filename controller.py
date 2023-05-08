@@ -30,15 +30,17 @@ pca.frequency = 50
 # range, but the default is to use 180 degrees. You can specify the expected range if you wish:
 # servo7 = servo.Servo(pca.channels[7], actuation_range=135)
 servo0 = servo.Servo(pca.channels[0], actuation_range=135)
-# servo1 = servo
+servo1 = servo.Servo(pca.channels[1], actuation_range=135)
+# Set servo 1 to angle 90°
+servo1.angle = 90
 
 # We sleep in the loops to give the servo time to move into position.
-for i in range(135):
-    servo0.angle = i
-    time.sleep(0.03)
-for i in range(135):
-    servo0.angle = 180 - i
-    time.sleep(0.03)
+# for i in range(135):
+#     servo0.angle = i
+#     time.sleep(0.03)
+# for i in range(135):
+#     servo0.angle = 180 - i
+#     time.sleep(0.03)
 
 # # You can also specify the movement fractionally.
 # fraction = 0.0
@@ -47,6 +49,6 @@ for i in range(135):
 #     fraction += 0.01
 #     time.sleep(0.03)
 
-servo0.fraction = 0
+# servo0.fraction = 0
 
 pca.deinit()
