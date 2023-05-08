@@ -11,11 +11,9 @@ i2c = busio.I2C(SCL, SDA)
 pca = PCA9685(i2c)
 pca.frequency = 50
 
-# The pulse range is 750 - 2250 by default. This range typically gives 135 degrees of
-# range, but the default is to use 180 degrees. You can specify the expected range if you wish:
-# servo7 = servo.Servo(pca.channels[7], actuation_range=135)
-servo0_range = 150
-servo0 = servo.Servo(pca.channels[0], actuation_range=servo0_range, min_pulse=500, max_pulse=2100)
+# Set up for servo #0
+servo0_range = 180
+servo0 = servo.Servo(pca.channels[0], actuation_range=servo0_range, min_pulse=490, max_pulse=1950)
 
 # Statically hold the rest of the servos
 servo1 = servo.Servo(pca.channels[1], actuation_range=135)
@@ -29,6 +27,8 @@ servo3.angle = 90
 for i in range(servo0_range):
     servo0.angle = i
     time.sleep(0.03)
+# Wait before sweeping back
+time.sleep(10)
 for i in range(servo0_range):
     servo0.angle = servo0_range - i
     time.sleep(0.03)
