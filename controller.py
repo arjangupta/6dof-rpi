@@ -38,12 +38,12 @@ servo2.angle = 90
 servo3.angle = 90
 
 # We sleep in the loops to give the servo time to move into position.
-# for i in range(135):
-#     servo0.angle = i
-#     time.sleep(0.03)
-# for i in range(135):
-#     servo0.angle = 180 - i
-#     time.sleep(0.03)
+for i in range(135):
+    servo0.angle = i
+    time.sleep(0.03)
+for i in range(135):
+    servo0.angle = 135 - i
+    time.sleep(0.03)
 
 # # You can also specify the movement fractionally.
 # fraction = 0.0
