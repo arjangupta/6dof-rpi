@@ -56,6 +56,12 @@ def main():
             min_pulse = input("Enter the minimum pulse width (usually, 480-1970): ")
             # Get the maximum pulse width
             max_pulse = input("Enter the maximum pulse width (usually, 480-1970): ")
+            # Convert the minimum and maximum pulse widths to integers
+            min_pulse = int(min_pulse)
+            max_pulse = int(max_pulse)
+            # Convert the servo number to an integer
+            servo_num = int(servo_num)
+            # Test the servo range
             test_servo_range(pca, servo_num, min_pulse, max_pulse)
     # Deinitialize the PCA9685
     pca.deinit()
