@@ -19,3 +19,9 @@ After that, detect the 0x40 address of the PCA9685 hat:
 ```sh
 sudo i2cdetect -y 1
 ```
+
+For the Adafruit library, execute the following:
+
+```sh 
+pip3 install adafruit-circuitpython-servokit
+```
