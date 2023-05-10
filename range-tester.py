@@ -61,3 +61,6 @@ def main():
     pca.deinit()
     # Show exit message
     print("Exiting...")
+
+if __name__ == "__main__":
+    main()
