@@ -1,10 +1,9 @@
 """
-This program tests the range of the servos.
-The user can specify the servo to test. 
-The program will then get the current position of the servo,
-then it will sweep the servo from that position to 0 degrees, 
-and then to 180 degrees.
-The user can then specify the servo to test again, or exit the program.
+This program tests the robot joints:
+1. Joint movement range
+2. Movement to specific position
+3. Current position of all joints
+The user can then specify the servo to test and which action to perform.
 """
 
 import time
@@ -30,9 +29,9 @@ def load_robot_properties():
         robot_properties = json.load(file)
     return robot_properties
 
-def test_servo_range(pca, servo_num, min_pulse, servo_range):
+def test_servo_range(pca, servo_num, min_pulse, max_pulse, servo_range):
     # Get the current position of the servo
-    test_servo = servo.Servo(pca.channels[servo_num], actuation_range=servo_range, min_pulse=min_pulse, max_pulse=max_pulse)
+    test_servo = servo.Servo(pca.channels[servo_num], servo_range, min_pulse, max_pulse)
     current_pos = test_servo.angle
     # Show the current position of the servo
     print("Current position of servo " + str(servo_num) + ": " + str(current_pos))
