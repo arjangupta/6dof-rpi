@@ -28,9 +28,11 @@ def test_servo_range(pca, servo_num, min_pulse, max_pulse):
     servo_range = 180
     test_servo = servo.Servo(pca.channels[servo_num], actuation_range=servo_range, min_pulse=min_pulse, max_pulse=max_pulse)
     current_pos = test_servo.angle
+    # Show the current position of the servo
+    print("Current position of servo " + str(servo_num) + ": " + str(current_pos))
 
     # Sweep the servo from the current position to 0 degrees
-    for i in range(current_pos, -1, -1):
+    for i in range(int(current_pos), -1, -1):
         test_servo.angle = i
         time.sleep(0.03)
     # Wait for 10 seconds
