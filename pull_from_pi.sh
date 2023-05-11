@@ -6,4 +6,4 @@ function get_file_from_pi() {
 
 # Get files from the pi
 get_file_from_pi version.txt
-get_file_from_pi range-tester.py
+get_file_from_pi joint-tester.py
