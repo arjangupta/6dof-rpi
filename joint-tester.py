@@ -55,25 +55,25 @@ def main():
     # Loop until the user exits
     while True:
         # Ask the user which servo to test, or exit
-        servo_num = input("Enter the servo number to test (0-5), or 'exit' to exit: ")
+        user_input = input("Enter the servo number to test (0-5),\nOr, enter 'positions' or 'p' to show current positions of all servos\nOr, enter 'exit' to exit: ")
         # If the user entered 'exit', exit the program
-        if servo_num == "exit":
+        if user_input == "exit":
             break
         # Otherwise, check if we got an integer between 0-5, and ask the user if they would like to:
         # 1. Test the servo range (show current calibrated min/max pulse widths, but let the user specify them)
         # 2. Go to a specific angle of the servo
         # 3. Show current positions of all servos
-        elif servo_num.isdigit() and int(servo_num) >= 0 and int(servo_num) <= 5:
-            # Cast the servo number to an integer
-            servo_num = int(servo_num)
+        elif user_input.isdigit() and int(user_input) >= 0 and int(user_input) <= 5:
+            # Cast the user input to an integer
+            servo_num = int(user_input)
             # Ask the user what they would like to do
-            action = input("Enter 'range' to test the servo range, 'angle' to go to a specific angle, or 'positions' to show current positions of all servos: ")
+            action = input("Enter 'range' or 'r' to test the servo range,\n'angle' or 'a' to go to a specific angle: ")
             # Get the current min/max pulse widths & actuation range of the servo
             min_pulse = robot_properties["servo_list"][servo_num]["min_pulse"]
             max_pulse = robot_properties["servo_list"][servo_num]["max_pulse"]
             actuation_range = robot_properties["servo_list"][servo_num]["actuation_range"]
             # If the user entered 'range', test the servo range
-            if action == "range":
+            if action == "range" or action == "r":
                 # Ask the user what the min/max pulse widths, and actuation range should be
                 # If the user enters nothing, use the current min/max pulse widths
                 user_min_pulse = input("Enter the min pulse width (in microseconds) of the servo, or press enter to use the current min pulse width (" + str(min_pulse) + "): ")
@@ -88,24 +88,41 @@ def main():
                 # Test the servo range
                 test_servo_range(pca, servo_num, min_pulse, max_pulse, actuation_range)
             # If the user entered 'angle', go to a specific angle
-            elif action == "angle":
+            elif action == "angle" or action == "a":
+                # Cast the user input to an integer
+                servo_num = int(user_input)
                 # Ask the user what angle to go to
                 angle = input("Enter the angle to go to (0-180): ")
-                # Go to the specified angle
+                # Declare a servo object with the specified min/max pulse widths & actuation range
                 test_servo = servo.Servo(pca.channels[servo_num], actuation_range=actuation_range, min_pulse=min_pulse, max_pulse=max_pulse)
-                test_servo.angle = int(angle)
-            # If the user entered 'positions', show current positions of all servos
-            elif action == "positions":
-                # Loop through all servos
-                for i in range(6):
-                    # Get the current position of the servo
-                    test_servo = servo.Servo(pca.channels[i], actuation_range=actuation_range, min_pulse=min_pulse, max_pulse=max_pulse)
-                    current_pos = test_servo.angle
-                    # Show the current position of the servo
-                    print("Current position of servo " + str(i) + ": " + str(current_pos))
+                # Get and show current position of the servo
+                current_pos = test_servo.angle
+                print("Current position of servo " + str(servo_num) + ": " + str(current_pos))
+                # Determine if target angle is greater than or less than current position
+                if int(angle) > current_pos:
+                    # If target angle is greater than current position, sweep from current position to target angle
+                    for i in range(int(current_pos), int(angle) + 1):
+                        test_servo.angle = i
+                        time.sleep(0.01)
+                else:
+                    # If target angle is less than current position, sweep from current position to target angle
+                    for i in range(int(current_pos), int(angle) - 1, -1):
+                        test_servo.angle = i
+                        time.sleep(0.01)
+                # Show the current position of the servo
+                print("Current position of servo " + str(servo_num) + ": " + str(test_servo.angle))
             # If the user entered something else, show an error message
             else:
                 print("Invalid action, please try again.")
+        # If the user entered 'positions', show current positions of all servos
+        elif user_input == "positions" or user_input == "p":
+            # Loop through all servos
+            for i in range(6):
+                # Get the current position of the servo
+                test_servo = servo.Servo(pca.channels[i], actuation_range=robot_properties["servo_list"][i]["actuation_range"], min_pulse=robot_properties["servo_list"][i]["min_pulse"], max_pulse=robot_properties["servo_list"][i]["max_pulse"])
+                current_pos = test_servo.angle
+                # Show the current position of the servo
+                print("Current position of servo " + str(i) + ": " + str(current_pos))
         else:
             print("Invalid servo number, please try again.")
     # Deinitialize the PCA9685
