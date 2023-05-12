@@ -2,39 +2,39 @@
     "servo_list": [
         {
             "name": "servo0",
-            "min": 480,
-            "max": 1970,
-            "actuation-range": 180
+            "min_pulse": 480,
+            "max_pulse": 1970,
+            "actuation_range": 180
         },
         {
             "name": "servo1",
-            "min": 480,
-            "max": 1970,
-            "actuation-range": 180
+            "min_pulse": 480,
+            "max_pulse": 1970,
+            "actuation_range": 180
         },
         {
             "name": "servo2",
-            "min": 480,
-            "max": 1970,
-            "actuation-range": 180
+            "min_pulse": 480,
+            "max_pulse": 1970,
+            "actuation_range": 180
         },
         {
             "name": "servo3",
-            "min": 480,
-            "max": 1970,
-            "actuation-range": 180
+            "min_pulse": 480,
+            "max_pulse": 1970,
+            "actuation_range": 180
         },
         {
             "name": "servo4",
-            "min": 480,
-            "max": 1970,
-            "actuation-range": 180
+            "min_pulse": 480,
+            "max_pulse": 1970,
+            "actuation_range": 180
         },
         {
             "name": "servo5",
-            "min": 480,
-            "max": 1970,
-            "actuation-range": 180
+            "min_pulse": 480,
+            "max_pulse": 1970,
+            "actuation_range": 180
         }
     ]
 }
