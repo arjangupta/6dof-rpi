@@ -104,12 +104,12 @@ def main():
                     # If target angle is greater than current position, sweep from current position to target angle
                     for i in range(int(current_pos), int(angle) + 1):
                         test_servo.angle = i
-                        time.sleep(0.01)
+                        time.sleep(0.02)
                 else:
                     # If target angle is less than current position, sweep from current position to target angle
                     for i in range(int(current_pos), int(angle) - 1, -1):
                         test_servo.angle = i
-                        time.sleep(0.01)
+                        time.sleep(0.02)
                 # Show the current position of the servo
                 print("Current position of servo " + str(servo_num) + ": " + str(test_servo.angle))
             # If the user entered something else, show an error message
