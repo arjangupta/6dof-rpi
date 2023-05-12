@@ -34,18 +34,19 @@ def test_servo_range(pca: PCA9685, servo_num, min_pulse, max_pulse, servo_range)
     test_servo = servo.Servo(pca.channels[servo_num], actuation_range=servo_range, min_pulse=min_pulse, max_pulse=max_pulse)
     current_pos = test_servo.angle
     # Show the current position of the servo
-    print("Current position of servo " + str(servo_num) + ": " + str(current_pos))
-
+    print("Starting position of servo is " + str(servo_num) + ": " + str(current_pos))
     # Sweep the servo from the current position to 0 degrees
     for i in range(int(current_pos), -1, -1):
         test_servo.angle = i
         time.sleep(0.03)
-    # Wait for 10 seconds
-    time.sleep(10)
+    # Wait
+    time.sleep(5)
     # Sweep the servo from 0 degrees to 180 degrees
     for i in range(0, servo_range + 1):
         test_servo.angle = i
         time.sleep(0.03)
+    # Inform about ending position
+    print("Ending position of servo is " + str(servo_num) + ": " + str(test_servo.angle))
 
 def main():
     # Initialize the PCA9685 and I2C bus
@@ -55,7 +56,7 @@ def main():
     # Loop until the user exits
     while True:
         # Ask the user which servo to test, or exit
-        user_input = input("Enter the servo number to test (0-5),\nOr, enter 'positions' or 'p' to show current positions of all servos\nOr, enter 'exit' to exit: ")
+        user_input = input("\nPlease choose:\n1. Enter the servo number to test (0-5),\n2. Enter 'positions' or 'p' to show current positions of all servos\n3. Enter 'exit' to exit\n")
         # If the user entered 'exit', exit the program
         if user_input == "exit":
             break
@@ -67,7 +68,7 @@ def main():
             # Cast the user input to an integer
             servo_num = int(user_input)
             # Ask the user what they would like to do
-            action = input("Enter 'range' or 'r' to test the servo range,\n'angle' or 'a' to go to a specific angle: ")
+            action = input("\nPlease choose:\n1. Enter 'range' or 'r' to test the servo range,\n2. Enter 'angle' or 'a' to go to a specific angle\n")
             # Get the current min/max pulse widths & actuation range of the servo
             min_pulse = robot_properties["servo_list"][servo_num]["min_pulse"]
             max_pulse = robot_properties["servo_list"][servo_num]["max_pulse"]
