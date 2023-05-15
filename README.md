@@ -25,3 +25,24 @@ For the Adafruit library, execute the following:
 ```sh 
 pip3 install adafruit-circuitpython-servokit
 ```
+
+## Development dependencies for Flask server
+
+```sh
+pip3 install flask
+```
+
+You might also need to install the following:
+
+```sh
+pip3 install typeguard
+```
+
+Then, do the following:
+
+```sh
+export FLASK_APP=server/server.py
+flask run
+```
+
+You will now see the server running. By opening localhost:5000, you can see a reply from the server.
