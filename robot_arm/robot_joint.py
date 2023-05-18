@@ -36,15 +36,26 @@ class RobotJoint:
         self.current_destination = angle
     
     """
-    Set an angular speed setting (levels 1-5) for the joint to move at.
-    :param speed: The angular speed for the joint to move at.
+    Set an angular speed as a sweep interval for the joint to move to its destination.
+    :param iteration_interval: The time interval between each iteration of the sweep.
     """
-    def set_angular_speed(self, speed):
-        # Check if speed is within the range of 1-5
-        if speed < 1 or speed > 5:
-            print(f"Speed setting of {speed} given to joint #{self.joint_num} is out of range.")
+    def set_sweep_interval(self, iteration_interval):
+        self.current_sweep_interval = iteration_interval
+    
+    """
+    Move the joint to its destination.
+    """
+    def move_to_destination(self):
+        # Check if the joint is already at its destination
+        if self.current_angle == self.current_destination:
+            # Notify
+            print(f"Joint #{self.joint_num} is already at its destination.")
             return
-        # Set the sweep interval based on the speed setting
-        self.current_sweep_interval = 0.01 * speed
+        # Check direction of movement
+        if self.current_angle < self.current_destination:
+            self.current_angle += 1
+        else:
+            self.current_angle -= 1
+        self.servo.angle = self.current_angle
         
 
