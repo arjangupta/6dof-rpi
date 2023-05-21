@@ -1,5 +1,5 @@
 from flask import Flask
-
+from 6dof_robot import Robot
 
 app = Flask(__name__)
 
