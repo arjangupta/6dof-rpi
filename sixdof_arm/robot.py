@@ -31,10 +31,10 @@ class Robot:
         # If the file is not found, notify, show current directory and exit
         current_dir = os.getcwd()
         try:
-            with open(current_dir + '/robot_properties.json') as f:
+            with open(current_dir + '/robot-properties.json') as f:
                 robot_properties = json.load(f)
         except FileNotFoundError:
-            print("robot_properties.json not found in current directory.")
+            print("robot-properties.json not found in current directory.")
             print("Current directory is:")
             print(current_dir)
             exit()
