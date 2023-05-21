@@ -1,5 +1,5 @@
 from flask import Flask
-from sixdof_robot import Robot
+from sixdof_arm import Robot
 
 app = Flask(__name__)
 
