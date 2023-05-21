@@ -24,6 +24,7 @@ class RobotJoint:
         self.current_angle = self.servo.angle
         self.destination = self.current_angle
         self.current_sweep_interval = 0.02
+        self.direction_of_movement = 1
         self.is_moving = False
     
     """
@@ -36,39 +37,37 @@ class RobotJoint:
             print(f"Angle of {angle} given to joint #{self.joint_num} is out of range.")
             return
         self.destination = angle
+        # Check direction of movement
+        if self.current_angle < self.destination:
+            self.direction_of_movement = 1
+        else:
+            self.direction_of_movement = -1
     
     """
-    Lock on mutex, then set angular speed as a sweep interval for the joint to move to its destination.
+    Set angular speed as a sweep interval for the joint to move to its destination.
     :param iteration_interval: The time interval between each iteration of the sweep.
     """
     def set_sweep_interval(self, iteration_interval):
         self.current_sweep_interval = iteration_interval
     
     """
-    Move the joint to its destination in a loop. This function is meant to be called in a thread.
+    Move the joint toward its destination.
     """
-    def move_to_destination(self):
+    def move_toward_destination(self):
         # Set moving flag
         self.is_moving = True
-        # Start moving
-        while True:
-            # Check if the joint is already at its destination
-            if self.current_angle == self.destination:
-                # Notify
-                print(f"Joint #{self.joint_num} is at destination {self.destination}.")
-                # Clear moving flag
-                self.is_moving = False
-                # Finish the thread
-                return
-            # Check direction of movement
-            if self.current_angle < self.destination:
-                self.current_angle += 1
-            else:
-                self.current_angle -= 1
-            self.servo.angle = self.current_angle
-            # Wait for the next iteration
-            time.sleep(self.current_sweep_interval)
+        # Change current angle
+        self.current_angle += self.direction_of_movement
+        self.servo.angle = self.current_angle
     
+    """
+    Check if the joint is at its destination (within a tolerance of 1 degree)
+    :return: True if the joint is at its destination, False otherwise.
+    """
+    def is_at_destination(self) -> bool:
+        # Check if the joint is within a tolerance of 1 degree of its destination
+        return self.current_angle >= self.destination - 1 and self.current_angle <= self.destination + 1
+
     """
     Get value of the moving flag.
     :return: True if the joint is moving, False otherwise.
