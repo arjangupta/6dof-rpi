@@ -7,6 +7,7 @@ import busio
 from adafruit_pca9685 import PCA9685
 from .robot_joint import RobotJoint
 import json
+import os
 
 class Robot:
     """
@@ -27,6 +28,13 @@ class Robot:
     
     def load_robot_properties(self):
         # Load the JSON file that contains the servo calibration data
-        with open("robot-properties.json", "r") as file:
-            robot_properties = json.load(file)
-        return robot_properties
+        # If the file is not found, notify, show current directory and exit
+        current_dir = os.getcwd()
+        try:
+            with open(current_dir + '/robot_properties.json') as f:
+                robot_properties = json.load(f)
+        except FileNotFoundError:
+            print("robot_properties.json not found in current directory.")
+            print("Current directory is:")
+            print(current_dir)
+            exit()
