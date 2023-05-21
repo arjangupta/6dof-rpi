@@ -2,6 +2,7 @@ from flask import Flask
 from sixdof_arm import Robot
 
 app = Flask(__name__)
+robot = Robot()
 
 @app.route('/')
 def display_welcome_message():

@@ -6,7 +6,7 @@ push_file_to_pi() {
 }
 
 push_dir_to_pi() {
-    scp -r ./$1 pi@raspberrypitwo.local:~/workspace/6dof-rpi-deployment/$1
+    scp -r ./$1 pi@raspberrypitwo.local:~/workspace/6dof-rpi-deployment/
 }
 
 # Use scp to copy the file to the pi
