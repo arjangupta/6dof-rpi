@@ -3,7 +3,7 @@ from flask import request
 from sixdof_arm import Robot
 import logging
 
-PROJECT_VERSION = "0.0.7"
+PROJECT_VERSION = "0.0.8"
 
 # Initialize Flask app and logging
 app = Flask(__name__)

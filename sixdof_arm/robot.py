@@ -73,17 +73,18 @@ class Robot:
     :param target_dict: A dictionary containing the target positions of all joints.
     """
     def move_to(self, target_dict):
-        if "joint1" in target_dict:
+        # Check if the target_dict contains all the joints, if they are not None, and if they are within the range of motion of the joint
+        if "joint1" in target_dict and not target_dict["joint1"] is None and isinstance(target_dict["joint1"], int) and target_dict["joint1"] >= 0 and target_dict["joint1"] <= self.joints[0].angle_range:
             self.joints[0].set_destination(target_dict["joint1"])
-        if "joint2" in target_dict:
+        if "joint2" in target_dict and not target_dict["joint2"] is None and isinstance(target_dict["joint2"], int) and target_dict["joint2"] >= 0 and target_dict["joint2"] <= self.joints[1].angle_range:
             self.joints[1].set_destination(target_dict["joint2"])
-        if "joint3" in target_dict:
+        if "joint3" in target_dict and not target_dict["joint3"] is None and isinstance(target_dict["joint3"], int) and target_dict["joint3"] >= 0 and target_dict["joint3"] <= self.joints[2].angle_range:
             self.joints[2].set_destination(target_dict["joint3"])
-        if "joint4" in target_dict:
+        if "joint4" in target_dict and not target_dict["joint4"] is None and isinstance(target_dict["joint4"], int) and target_dict["joint4"] >= 0 and target_dict["joint4"] <= self.joints[3].angle_range:
             self.joints[3].set_destination(target_dict["joint4"])
-        if "joint5" in target_dict:
+        if "joint5" in target_dict and not target_dict["joint5"] is None and isinstance(target_dict["joint5"], int) and target_dict["joint5"] >= 0 and target_dict["joint5"] <= self.joints[4].angle_range:
             self.joints[4].set_destination(target_dict["joint5"])
-        if "joint6" in target_dict:
+        if "joint6" in target_dict and not target_dict["joint6"] is None and isinstance(target_dict["joint6"], int) and target_dict["joint6"] >= 0 and target_dict["joint6"] <= self.joints[5].angle_range:
             self.joints[5].set_destination(target_dict["joint6"])
         # Set direction of movement for each joint
         for joint in self.joints:
