@@ -40,7 +40,6 @@ class Robot:
             RobotJoint(self.pca, 5, servo4["actuation_range"], servo4["min_pulse"], servo4["max_pulse"]),
             RobotJoint(self.pca, 6, servo5["actuation_range"], servo5["min_pulse"], servo5["max_pulse"])
         ]
-    
     def load_robot_properties(self):
         # Load the JSON file that contains the servo calibration data
         # If the file is not found, notify, show current directory and exit
@@ -53,3 +52,9 @@ class Robot:
             print("Current directory is:")
             print(current_dir)
             exit()
+    def get_current_positions(self):
+        # Get the current positions of all joints
+        current_positions = []
+        for joint in self.joints:
+            current_positions.append(joint.current_angle)
+        return current_positions

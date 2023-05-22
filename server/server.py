@@ -35,6 +35,19 @@ def move_to():
     # Return a success message
     return "Robot arm moved successfully.\n"
 
+"""
+This endpoint is used to get the current angles of each joint.
+:return: A JSON containing the current angles of each joint.
+"""
+@app.route('/current_angles', methods=['GET'])
+def get_current_angles():
+    # Get the current angles of each joint
+    current_angles = robot.get_current_positions()
+    # Convert the list to JSON
+    current_angles_json = {"current_angles": current_angles}
+    # Return the current angles
+    return current_angles
+
 @app.route('/version')
 def show_version():
     return f"<p>Overall project version is {PROJECT_VERSION}.</p>"
