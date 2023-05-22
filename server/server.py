@@ -43,10 +43,8 @@ This endpoint is used to get the current angles of each joint.
 def get_current_angles():
     # Get the current angles of each joint
     current_angles = robot.get_current_positions()
-    # Convert the list to JSON
-    current_angles_json = {"current_angles": current_angles}
-    # Return the current angles
-    return current_angles
+    # Convert the list to JSON and return it
+    return {"current_angles": current_angles}
 
 @app.route('/version')
 def show_version():
