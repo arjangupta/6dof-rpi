@@ -85,6 +85,12 @@ class Robot:
             self.joints[4].set_destination(target_dict["joint5"])
         if "joint6" in target_dict:
             self.joints[5].set_destination(target_dict["joint6"])
+        # Set direction of movement for each joint
+        for joint in self.joints:
+            if joint.current_angle < joint.destination:
+                joint.direction_of_movement = 1
+            else:
+                joint.direction_of_movement = -1
         # Get the shortest sleep interval of all joints
         shortest_sleep_interval = min(joint.current_sweep_interval for joint in self.joints)
         # Move the joints toward their destinations
