@@ -44,13 +44,6 @@ class RobotJoint:
             self.direction_of_movement = -1
     
     """
-    Set angular speed as a sweep interval for the joint to move to its destination.
-    :param iteration_interval: The time interval between each iteration of the sweep.
-    """
-    def set_sweep_interval(self, iteration_interval):
-        self.current_sweep_interval = iteration_interval
-    
-    """
     Move the joint toward its destination.
     """
     def move_toward_destination(self):
@@ -67,17 +60,3 @@ class RobotJoint:
     def is_at_destination(self) -> bool:
         # Check if the joint is within a tolerance of 1 degree of its destination
         return self.current_angle >= self.destination - 1 and self.current_angle <= self.destination + 1
-
-    """
-    Get value of the moving flag.
-    :return: True if the joint is moving, False otherwise.
-    """
-    def get_is_moving(self) -> bool:
-        return self.is_moving
-    
-    """
-    Get the current angle of the joint.
-    :return: The current angle of the joint.
-    """
-    def get_current_angle(self) -> float:
-        return self.current_angle
