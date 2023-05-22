@@ -23,8 +23,23 @@ class Robot:
         # Load the JSON robot properties file
         print("Loading robot properties...")
         self.robot_properties = self.load_robot_properties()
+        # Get properties of the each servo
+        servo_list = self.robot_properties["servo_list"]
+        servo0 = servo_list[0]
+        servo1 = servo_list[1]
+        servo2 = servo_list[2]
+        servo3 = servo_list[3]
+        servo4 = servo_list[4]
+        servo5 = servo_list[5]
         # Initialize the robot joints
-        self.joints = []
+        self.joints = [
+            RobotJoint(self.pca, 1, servo0["actuation_range"], servo0["min_pulse"], servo0["max_pulse"]),
+            RobotJoint(self.pca, 2, servo1["actuation_range"], servo1["min_pulse"], servo1["max_pulse"]),
+            RobotJoint(self.pca, 3, servo2["actuation_range"], servo2["min_pulse"], servo2["max_pulse"]),
+            RobotJoint(self.pca, 4, servo3["actuation_range"], servo3["min_pulse"], servo3["max_pulse"]),
+            RobotJoint(self.pca, 5, servo4["actuation_range"], servo4["min_pulse"], servo4["max_pulse"]),
+            RobotJoint(self.pca, 6, servo5["actuation_range"], servo5["min_pulse"], servo5["max_pulse"])
+        ]
     
     def load_robot_properties(self):
         # Load the JSON file that contains the servo calibration data
