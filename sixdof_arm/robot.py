@@ -52,6 +52,7 @@ class Robot:
             print("Current directory is:")
             print(current_dir)
             exit()
+        return robot_properties
     def get_current_positions(self):
         # Get the current positions of all joints
         current_positions = []

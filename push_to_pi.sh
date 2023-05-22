@@ -10,7 +10,7 @@ push_dir_to_pi() {
 }
 
 # Use scp to copy the file to the pi
-push_file_to_pi joint-tester.py
 push_file_to_pi robot-properties.json
 push_dir_to_pi sixdof_arm
 push_dir_to_pi server
+# push_dir_to_pi joint_tester
