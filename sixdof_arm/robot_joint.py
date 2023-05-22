@@ -26,6 +26,7 @@ class RobotJoint:
         self.current_sweep_interval = 0.02
         self.direction_of_movement = 1
         self.is_moving = False
+        self.last_move_time = time.monotonic()
     
     """
     Sets a destination angle for the joint to move to.

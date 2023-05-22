@@ -8,6 +8,7 @@ from adafruit_pca9685 import PCA9685
 from .robot_joint import RobotJoint
 import json
 import os
+import time
 
 class Robot:
     """
@@ -40,6 +41,10 @@ class Robot:
             RobotJoint(self.pca, 5, servo4["actuation_range"], servo4["min_pulse"], servo4["max_pulse"]),
             RobotJoint(self.pca, 6, servo5["actuation_range"], servo5["min_pulse"], servo5["max_pulse"])
         ]
+    """
+    Load the JSON file that contains the servo calibration data.
+    :return: A dictionary containing the servo calibration data.
+    """
     def load_robot_properties(self):
         # Load the JSON file that contains the servo calibration data
         # If the file is not found, notify, show current directory and exit
@@ -53,9 +58,50 @@ class Robot:
             print(current_dir)
             exit()
         return robot_properties
+    """
+    Get the current positions of all joints.
+    :return: A list containing the current positions of all joints.
+    """
     def get_current_positions(self):
         # Get the current positions of all joints
         current_positions = []
         for joint in self.joints:
             current_positions.append(joint.current_angle)
         return current_positions
+    """
+    Move the robot arm to a target position.
+    :param target_dict: A dictionary containing the target positions of all joints.
+    """
+    def move_to(self, target_dict):
+        if "joint1" in target_dict:
+            self.joints[0].set_destination(target_dict["joint1"])
+        if "joint2" in target_dict:
+            self.joints[1].set_destination(target_dict["joint2"])
+        if "joint3" in target_dict:
+            self.joints[2].set_destination(target_dict["joint3"])
+        if "joint4" in target_dict:
+            self.joints[3].set_destination(target_dict["joint4"])
+        if "joint5" in target_dict:
+            self.joints[4].set_destination(target_dict["joint5"])
+        if "joint6" in target_dict:
+            self.joints[5].set_destination(target_dict["joint6"])
+        # Get the shortest sleep interval of all joints
+        shortest_sleep_interval = min(joint.current_sweep_interval for joint in self.joints)
+        # Move the joints toward their destinations
+        while True:
+            # Move each joint toward its destination
+            for joint in self.joints:
+                # Check the joint is at its destination and if it is time to move
+                if not joint.is_at_destination() and time.monotonic() - joint.last_move_time >= joint.current_sweep_interval:
+                    # Move the joint toward its destination
+                    joint.move_toward_destination()
+                    # Update the last move time
+                    joint.last_move_time = time.monotonic()
+                else:
+                    # Set moving flag to False
+                    joint.is_moving = False
+            # Wait for the shortest sleep interval
+            time.sleep(shortest_sleep_interval)
+            # Check if all joints are at their destination
+            if not any(joint.is_moving for joint in self.joints):
+                break

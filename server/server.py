@@ -31,7 +31,7 @@ def move_to():
     # Show the target angles
     app.logger.debug(f"Target angles: {target_dict}")
     # Move the robot arm
-    # robot.move_to(target_dict)
+    robot.move_to(target_dict)
     # Return a success message
     return "Robot arm moved successfully.\n"
 
