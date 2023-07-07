@@ -51,6 +51,8 @@ class RobotJoint:
         # Set moving flag
         self.is_moving = True
         # Change current angle
+        # TODO: Instead of whipping the joint to the max/min angle, we need to implement a
+        # home position for each joint (github issue #1)
         if self.current_angle > self.angle_range:
             self.current_angle = self.angle_range
         elif self.current_angle < 0:
