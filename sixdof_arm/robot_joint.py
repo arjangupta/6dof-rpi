@@ -51,6 +51,10 @@ class RobotJoint:
         # Set moving flag
         self.is_moving = True
         # Change current angle
+        if self.current_angle > self.angle_range:
+            self.current_angle = self.angle_range
+        elif self.current_angle < 0:
+            self.current_angle = 0
         self.current_angle += self.direction_of_movement
         self.servo.angle = self.current_angle
     
