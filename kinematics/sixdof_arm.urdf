@@ -1,17 +1,135 @@
 <?xml version="1.0"?>
-<robot name="arjan-sixdof-arm">
+<robot name="six_dof_robotic_arm">
 
-<material name="black">
-  <color rgba="0.0 0.0 0.0 1.0"/>
-</material>
+  <!-- Define joints -->
+  <joint name="shoulder_pan_joint" type="revolute">
+    <parent link="base_link"/>
+    <child link="link1"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.14159" upper="3.14159" effort="100" velocity="3.14"/>
+  </joint>
 
+  <joint name="shoulder_lift_joint" type="revolute">
+    <parent link="link1"/>
+    <child link="link2"/>
+    <origin xyz="0 0 0.1" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-3.14159" upper="3.14159" effort="100" velocity="3.14"/>
+  </joint>
+
+  <!-- <joint name="elbow_joint" type="revolute">
+    <parent link="link2"/>
+    <child link="link3"/>
+    <origin xyz="0.4 0 0" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.14159" upper="3.14159" effort="100" velocity="3.14"/>
+  </joint>
+
+  <joint name="wrist_1_joint" type="revolute">
+    <parent link="link3"/>
+    <child link="link4"/>
+    <origin xyz="0.3 0 0" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-3.14159" upper="3.14159" effort="100" velocity="3.14"/>
+  </joint>
+
+  <joint name="wrist_2_joint" type="revolute">
+    <parent link="link4"/>
+    <child link="link5"/>
+    <origin xyz="0.2 0 0" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.14159" upper="3.14159" effort="100" velocity="3.14"/>
+  </joint>
+
+  <joint name="wrist_3_joint" type="revolute">
+    <parent link="link5"/>
+    <child link="gripper_link"/>
+    <origin xyz="0.1 0 0" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-3.14159" upper="3.14159" effort="100" velocity="3.14"/>
+  </joint> -->
+
+  <!-- Define materials -->
+  <material name="black">
+    <color rgba="0.0 0.0 0.0 1.0"/>
+  </material>
+
+  <!-- Define links -->
   <link name="base_link">
     <visual>
       <geometry>
         <box size="9 9 0.2"/>
       </geometry>
-      <origin xyz="0.0 0.0 0.1"/>
+      <origin xyz="0 0 0.1" rpy="0 0 0"/>
       <material name="black"/>
     </visual>
   </link>
+
+  <link name="link1">
+    <visual>
+      <geometry>
+        <box size="1 3 12.2"/>
+      </geometry>
+      <origin xyz="0 1.5 6.1" rpy="0 0 0"/>
+      <material name="black"/>
+    </visual>
+  </link>
+
+  <link name="link2">
+    <visual>
+      <geometry>
+        <box size="0.1 0.3 0.1"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <!-- <link name="link3">
+    <visual>
+      <geometry>
+        <box size="0.4 0.1 0.1"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="link4">
+    <visual>
+      <geometry>
+        <box size="0.3 0.1 0.1"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="link5">
+    <visual>
+      <geometry>
+        <box size="0.2 0.1 0.1"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="gripper_link">
+    <visual>
+      <geometry>
+        <box size="0.1 0.05 0.05"/>
+      </geometry>
+    </visual>
+  </link> -->
+
+  <!-- Define robot links and joints -->
+  <!-- <link name="robot_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.05 0.05 0.05"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <joint name="robot_base_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="robot_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint> -->
+
 </robot>
