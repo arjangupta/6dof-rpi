@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<robot name="arjan-sixdof-arm">
+
+<material name="black">
+  <color rgba="0.0 0.0 0.0 1.0"/>
+</material>
+
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="9 9 0.2"/>
+      </geometry>
+      <origin xyz="0.0 0.0 0.1"/>
+      <material name="black"/>
+    </visual>
+  </link>
+</robot>
