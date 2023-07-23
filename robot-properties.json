@@ -16,7 +16,7 @@
             "name": "servo2",
             "min_pulse": 350,
             "max_pulse": 1970,
-            "actuation_range": 180
+            "actuation_range": 170
         },
         {
             "name": "servo3",
