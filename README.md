@@ -54,3 +54,6 @@ You will now see the server running. By opening localhost:5000, you can see a re
 ## Visualization of URDF
 
 The kinematics/sixdof_arm.urdf file can be visualized in Foxglove Studio. To do that, install Foxglove Studio and open the file in it under "Custom layers".
+The model should look like the following.
+
+![URDF visualization](images/urdf-visualization.png "URDF visualization")
