@@ -9,12 +9,12 @@
         {
             "name": "servo1",
             "min_pulse": 480,
-            "max_pulse": 1970,
-            "actuation_range": 180
+            "max_pulse": 2200,
+            "actuation_range": 210
         },
         {
             "name": "servo2",
-            "min_pulse": 480,
+            "min_pulse": 350,
             "max_pulse": 1970,
             "actuation_range": 180
         },
