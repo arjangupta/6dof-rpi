@@ -7,6 +7,10 @@ This is my personal project. So far the hardware consists of:
 - Robotic arm (diymore ROT3Us) with six MG996R servos
 - Separate power supplies for the Pi and the servos
 
+## Physical setup
+
+![Physical setup](images/6dof-physical-setup.jpg "Physical setup")
+
 ## Dependencies on RPi
 
 ```sh
