@@ -13,9 +13,9 @@
   <joint name="joint2" type="revolute">
     <parent link="link1"/>
     <child link="link2"/>
-    <origin xyz="0 11.5 15.1" rpy="0 0 0"/>
-    <axis xyz="-1 0 0"/>
-    <limit lower="0" upper="3.14159" effort="100" velocity="3.14"/>
+    <origin xyz="0 0 14" rpy="0 0 0"/>
+    <axis xyz="1 0 0"/>
+    <limit lower="0" upper="3.66519" effort="100" velocity="3.14"/>
   </joint>
 
   <joint name="joint3" type="revolute">
@@ -69,7 +69,7 @@
   <link name="link1">
     <visual>
       <geometry>
-        <box size="2.5 2.5 12.2"/>
+        <box size="2.5 6.5 12.2"/>
       </geometry>
       <origin xyz="0 1.5 9.0" rpy="0 0 0"/> <!-- Origin height (z) is 6.1 (half of object height) + 2.9 (base height) = 9.0 -->
       <material name="black"/>
@@ -81,7 +81,7 @@
       <geometry>
         <box size="6 13 2.5"/>
       </geometry>
-      <origin xyz="0 -3.5 0" rpy="0 0 0"/>
+      <origin xyz="0 6.5 0" rpy="0 0 0"/>
       <material name="black"/>
     </visual>
   </link>
