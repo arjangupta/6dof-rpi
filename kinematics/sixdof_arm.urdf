@@ -34,7 +34,7 @@
     <limit lower="-3.14159" upper="3.14159" effort="100" velocity="3.14"/>
   </joint>
 
-  <!-- <joint name="wrist_2_joint" type="revolute">
+  <joint name="wrist_fixed_joint" type="fixed">
     <parent link="link4"/>
     <child link="link5"/>
     <origin xyz="0.2 0 0" rpy="0 0 0"/>
@@ -42,17 +42,21 @@
     <limit lower="-3.14159" upper="3.14159" effort="100" velocity="3.14"/>
   </joint>
 
-  <joint name="wrist_3_joint" type="revolute">
+  <joint name="joint5" type="revolute">
     <parent link="link5"/>
     <child link="gripper_link"/>
-    <origin xyz="0.1 0 0" rpy="0 0 0"/>
+    <origin xyz="0 10.5 2.5" rpy="0 0 0"/>
     <axis xyz="0 1 0"/>
     <limit lower="-3.14159" upper="3.14159" effort="100" velocity="3.14"/>
-  </joint> -->
+  </joint>
 
   <!-- Define materials -->
   <material name="black">
     <color rgba="0.0 0.0 0.0 1.0"/>
+  </material>
+
+  <material name="grey">
+    <color rgba="0.5 0.5 0.5 1.0"/>
   </material>
 
   <!-- Define links -->
@@ -106,36 +110,24 @@
     </visual>
   </link>
 
-  <!-- <link name="link5">
+  <link name="link5">
     <visual>
       <geometry>
-        <box size="0.2 0.1 0.1"/>
+        <box size="4.25 3.5 2.5"/>
       </geometry>
+      <origin xyz="0 3.0 2.5" rpy="0 0 0"/>
+      <material name="black"/>
     </visual>
   </link>
 
   <link name="gripper_link">
     <visual>
       <geometry>
-        <box size="0.1 0.05 0.05"/>
+        <box size="7.75 11 1.5"/>
       </geometry>
-    </visual>
-  </link> -->
-
-  <!-- Define robot links and joints -->
-  <!-- <link name="robot_link">
-    <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.05 0.05 0.05"/>
-      </geometry>
+      <material name="grey"/>
     </visual>
   </link>
-
-  <joint name="robot_base_joint" type="fixed">
-    <parent link="base_link"/>
-    <child link="robot_link"/>
-    <origin xyz="0 0 0" rpy="0 0 0"/>
-  </joint> -->
 
 </robot>
