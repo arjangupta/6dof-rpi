@@ -6,7 +6,7 @@ import ikpy.utils.plot as plot_utils
 sixdof_chain = ikpy.chain.Chain.from_urdf_file("kinematics/sixdof_arm.urdf")
 
 # Inverse kinematics
-target_position = [6.1, 6.1, 1.1]
+target_position = [15.0, 10.0, 5.0]
 print("The angles of each joints are : ", sixdof_chain.inverse_kinematics(target_position))
 real_frame = sixdof_chain.forward_kinematics(sixdof_chain.inverse_kinematics(target_position))
 print("Computed position vector : %s, original position vector : %s" % (real_frame[:3, 3], target_position))
@@ -15,5 +15,7 @@ print("Computed position vector : %s, original position vector : %s" % (real_fra
 import matplotlib.pyplot as plt
 fig, ax = plot_utils.init_3d_figure()
 sixdof_chain.plot(sixdof_chain.inverse_kinematics(target_position), ax, target=target_position)
-plt.xlim(0, 10)
-plt.ylim(0, 10)
+plt.xlim(0, 20)
+plt.ylim(0, 20)
+ax.set_zlim(0, 30)
+plt.show()
